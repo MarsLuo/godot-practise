@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://b0xohcdmfemjv"]
+[gd_scene load_steps=10 format=4 uid="uid://b0xohcdmfemjv"]
 
 [ext_resource type="PackedScene" uid="uid://d107tbxhke6pg" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://cqwqyh15q8wx" path="res://scenes/paltform.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cmgxefm4ivool" path="res://assets/sprites/world_tileset.png" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bduhfv3eax8wv" path="res://scenes/coin.tscn" id="4_lbhrr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -240,3 +241,12 @@ autoplay = "move"
 speed_scale = 0.5
 
 [node name="foreground" type="TileMapLayer" parent="."]
+
+[node name="Area2D" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(40, -88)
+
+[node name="Area2D2" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(73, -102)
+
+[node name="Area2D3" parent="." instance=ExtResource("4_lbhrr")]
+position = Vector2(57, -104)
