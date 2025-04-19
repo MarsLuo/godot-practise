@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://b0xohcdmfemjv"]
+[gd_scene load_steps=12 format=4 uid="uid://b0xohcdmfemjv"]
 
 [ext_resource type="PackedScene" uid="uid://d107tbxhke6pg" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://cqwqyh15q8wx" path="res://scenes/paltform.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cmgxefm4ivool" path="res://assets/sprites/world_tileset.png" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bduhfv3eax8wv" path="res://scenes/coin.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://dvxp8xba4d246" path="res://scenes/killZone.tscn" id="5_iywne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -176,6 +177,8 @@ texture = ExtResource("2_yqjtg")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
+
 [sub_resource type="Animation" id="Animation_lbhrr"]
 length = 0.001
 tracks/0/type = "value"
@@ -219,40 +222,53 @@ _data = {
 tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+/wEAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wAAAAABAAAAAAD9/wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD9/wMAAAAAAAEAAAD//wEAAAAAAAEAAAAAAAEAAAAAAAEAAAD//wIAAAAAAAEAAAD+/wMAAAABAAAAAAAAAAIAAAABAAAAAAABAAEAAAAGAAAAAAADAAEAAAAGAAAAAAACAAEAAAAHAAEAAAABAAIAAAAGAAEAAAABAAMAAAAGAAEAAAADAAIAAAAGAAEAAAADAAMAAAAGAAEAAAACAAMAAAAGAAEAAAACAAIAAAAIAAAAAAAHAAEAAAAGAAAAAAAIAAEAAAAGAAAAAAAHAAIAAAAGAAEAAAAHAAMAAAAGAAEAAAAIAAIAAAAGAAEAAAAIAAMAAAAGAAEAAAALAAIAAAAGAAEAAAALAAMAAAAGAAEAAAAMAAMAAAAGAAEAAAAMAAIAAAAGAAEAAAALAAEAAAAHAAEAAAAMAAEAAAAGAAAAAAACAPz/AAAAAAEAAAACAPv/AAAAAAAAAAADAPr/AAAAAAAAAAAEAPr/AAAAAAAAAAADAPv/AAAAAAEAAAADAPz/AAABAAAAAAAEAPz/AAAAAAEAAAAEAPv/AAAAAAEAAAD//wMAAAAAAAEAAAAAAAMAAAAAAAEAAAAHAAAAAAAAAAgAAAAEAAEAAAAJAAAAAAAFAAEAAAAKAAAAAAAGAAEAAAALAAAAAAAFAPz/AAAAAAAAAAAGAPz/AAAAAAAAAAAFAP3/AAAAAAEAAAAGAP3/AAAAAAEAAAAGAPv/AAAAAAUAAAAGAPr/AAAAAAQAAAAGAPn/AAAAAAQAAAAGAPj/AAAAAAMAAAAHAPz/AAAJAAAAAAAIAPz/AAALAAAAAAAJAPz/AAAAAAAAAAAKAPv/AAAAAAAAAAALAPv/AAAAAAAAAAAMAPz/AAAAAAAAAAAJAP3/AAAAAAEAAAAKAP3/AAABAAEAAAALAP3/AAAAAAEAAAAMAP3/AAAAAAEAAAALAPz/AAAAAAEAAAAKAPz/AAAAAAEAAAANAP3/AAAEAAAAAAAOAP3/AAAEAAAAAAAPAP3/AAAEAAAAAAAOAPz/AAAIAAYAAAAPAPz/AAAFAAUAAAAPAPv/AAAFAAQAAAAPAPr/AAAFAAMAAAANAP7/AAAEAAEAAAAOAP7/AAAEAAEAAAAPAP7/AAAEAAEAAAAPAP//AAAEAAEAAAAQAP//AAAEAAEAAAAQAAAAAAAEAAEAAAARAAAAAAAEAAEAAAASAAAAAAAEAAEAAAATAAAAAAAEAAEAAAASAAEAAAAEAAEAAAASAAIAAAAEAAEAAAASAAMAAAAEAAEAAAATAAEAAAAEAAEAAAATAAMAAAAEAAEAAAATAAIAAAAFAAAAAAARAP//AAAFAAAAAAAQAP7/AAAFAAAAAAARAP7/AAAFAAgAAAASAP//AAAEAAAAAAATAP//AAAEAAAAAAAdAP//AAACAAIAAAAdAAAAAAACAAEAAAAdAAEAAAACAAEAAAAdAAIAAAADAAEAAAAdAAMAAAADAAEAAAAdAAQAAAACAAEAAAAeAP//AAACAAIAAAAeAAAAAAACAAEAAAAeAAEAAAADAAEAAAAeAAIAAAACAAEAAAAeAAMAAAACAAEAAAAeAAQAAAADAAEAAAAfAAEAAAAGAAcAAAAfAAIAAAACAAEAAAAfAAMAAAACAAEAAAAfAAQAAAACAAEAAAAgAAIAAAADAAEAAAAgAAMAAAADAAEAAAAgAAQAAAACAAEAAAA=")
 tile_set = SubResource("TileSet_lbhrr")
 
-[node name="Platform" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(2, -40)
-
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(4, -15)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(-1, 7)
 zoom = Vector2(4, 4)
+limit_bottom = 72
+limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="Platform2" parent="." instance=ExtResource("2_lnu2h")]
+[node name="foreground" type="TileMapLayer" parent="."]
+
+[node name="killZone" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(-40, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killZone"]
+position = Vector2(192, 8)
+shape = SubResource("WorldBoundaryShape2D_iywne")
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="coin" parent="Coins" instance=ExtResource("4_lbhrr")]
+position = Vector2(25, 8)
+
+[node name="coin2" parent="Coins" instance=ExtResource("4_lbhrr")]
 position = Vector2(338, -11)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform2"]
+[node name="coin3" parent="Coins" instance=ExtResource("4_lbhrr")]
+position = Vector2(39, -88)
+
+[node name="coin4" parent="Coins" instance=ExtResource("4_lbhrr")]
+position = Vector2(151, -70)
+
+[node name="coin5" parent="Coins" instance=ExtResource("4_lbhrr")]
+position = Vector2(136, 6)
+
+[node name="Platform" type="Node2D" parent="."]
+
+[node name="Platform" parent="Platform" instance=ExtResource("2_lnu2h")]
+position = Vector2(2, -40)
+
+[node name="Platform2" parent="Platform" instance=ExtResource("2_lnu2h")]
+position = Vector2(338, -11)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform/Platform2"]
 libraries = {
 &"": SubResource("AnimationLibrary_iywne")
 }
 autoplay = "move"
 speed_scale = 0.5
-
-[node name="foreground" type="TileMapLayer" parent="."]
-
-[node name="coin" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(25, 8)
-
-[node name="coin2" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(338, -11)
-
-[node name="coin3" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(39, -88)
-
-[node name="coin4" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(151, -70)
-
-[node name="coin5" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(136, 6)
