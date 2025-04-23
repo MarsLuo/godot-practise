@@ -11,8 +11,16 @@ config_version=5
 [application]
 
 config/name="Youtobe_idle"
+run/main_scene="uid://fot8nec11bb6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
+gdscript/warnings/unsafe_property_access=1
+gdscript/warnings/unsafe_method_access=1
 
 [rendering]
 
