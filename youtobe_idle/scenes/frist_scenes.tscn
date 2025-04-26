@@ -1,8 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://fot8nec11bb6"]
 
-[ext_resource type="Script" uid="uid://ddkyw88xjtd2h" path="res://scenes/frist_scenes.gd" id="1_avl46"]
-
-[sub_resource type="SystemFont" id="SystemFont_avl46"]
+[ext_resource type="Texture2D" uid="uid://babhftq8bsow1" path="res://icon.svg" id="2_kcbtp"]
+[ext_resource type="Script" uid="uid://b5ngnv7crg5jo" path="res://scenes/texture_button.gd" id="3_rlhq8"]
 
 [node name="Frist_scenes" type="Control"]
 layout_mode = 3
@@ -11,32 +10,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_avl46")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 621.0
-offset_top = 118.0
-offset_right = 709.0
-offset_bottom = 141.0
-text = "Demo TEXT"
-
-[node name="Button" type="Button" parent="."]
+[node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.589
-anchor_top = 0.482
-anchor_right = 0.589
-anchor_bottom = 0.482
-offset_left = -45.5281
-offset_top = -8.33606
-offset_right = -18.5281
-offset_bottom = 106.664
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.84354, 0.519872)
-theme_override_fonts/font = SubResource("SystemFont_avl46")
-theme_override_font_sizes/font_size = 32
-text = "+1
-"
-language = "zh"
+texture_normal = ExtResource("2_kcbtp")
+script = ExtResource("3_rlhq8")
