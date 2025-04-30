@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://fot8nec11bb6"]
 
 [ext_resource type="Texture2D" uid="uid://babhftq8bsow1" path="res://icon.svg" id="2_kcbtp"]
-[ext_resource type="Script" uid="uid://b5ngnv7crg5jo" path="res://scenes/texture_button.gd" id="3_rlhq8"]
+[ext_resource type="Script" uid="uid://b5ngnv7crg5jo" path="res://scenes/frist_scene/texture_button.gd" id="3_rlhq8"]
 
 [node name="Frist_scenes" type="Control"]
 layout_mode = 3
